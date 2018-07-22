@@ -8,8 +8,7 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 def establish_connection(cnx_cursor):
     """
-    Simplified function for establishing connection with a database. Provides login data for connection, uses tuple
-     as a set of cnx and cursor
+    Simplified function for establishing connection. Provides data for connection, uses tuple as a set of cnx and cursor
     :param cnx_cursor:
     :return:
     """
@@ -46,52 +45,32 @@ def set_options():
     parser = argparse.ArgumentParser()
     parser.add_argument("-u", "--username",
                         dest="username", default=False,
-                        help="Takes input as user's login.")
+                        help="Takes user login.")
     parser.add_argument("-p", "--password",
                         dest="password", default=False,
-                        help="Takes input as user's password. Checks if there are at least 8 characters.")
-    parser.add_argument("-n", "--new-pass",
-                        dest="new-pass", default=False,
-                        help="Accepts new password for a user.")
+                        help="Takes user password for identification.")
     parser.add_argument("-l", "--list",
                         action="store_true", dest="list", default=False,
-                        help="Lists all users.")
-    parser.add_argument("-d", "--delete",
-                        dest="delete", default=False,
-                        help="Deletes provided user login.")
-    parser.add_argument("-e", "--edit",
-                        dest="edit", default=False,
-                        help="Modifies provided user login.")
+                        help="Lists all messages.")
+    parser.add_argument("-t", "--to",
+                        dest="to", default=False,
+                        help="Specifies user to which a message is to be sent.")
+    parser.add_argument("-s", "--send",
+                        dest="send", default=False,
+                        help="Sends a message to a user.")
 
     options = parser.parse_args()
     return options
 
 
 def solution(options):
-    # Set up connection and download class data
-    cnx_cursor = ["", ""]
-    establish_connection(cnx_cursor)
-    User.load_all_users(cnx_cursor[1])
-
-
-    if options.username:
-        print("Username provided.")
-        print(options)
-
-
-    # End connection
-    end_connection(cnx_cursor)
-    return
+    raise NotImplementedError("To be implemented.")
 
 
 if __name__ == "__main__":
-
-    solution(set_options())
-
-
+    cnx_cursor = ["", ""]
+    establish_connection(cnx_cursor)
 
 
 
-
-
-
+    end_connection(cnx_cursor)
